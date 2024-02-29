@@ -28,7 +28,7 @@ pairing = random.choice(true_false)
 
 if pairing == "true":
     print(f"You are playing as a PAIR. Your partner is {Player_B}.")
-    print(f"Your opponent is {Player_C}.")
+    print(f"Your opponent is {Player_C}.\n")
 
     for score in range(0, 100):
         if player_score >= 9 or opponent_score >= 9:
@@ -77,11 +77,11 @@ if pairing == "true":
                 opponent_score -= 2
             
             print(f"{Player_A} and {Player_B}'s score is {player_score}.")
-            print(f"{Player_C}'s score is {opponent_score}.")
+            print(f"{Player_C}'s score is {opponent_score}.\n")
 
 if pairing == "false":
     print(f"You are playing as a SOLO.")
-    print(f"Your opponents are {Player_B} and {Player_C}.")
+    print(f"Your opponents are {Player_B} and {Player_C}.\n")
 
     for score in range(0, 100):
         if player_score >= 9 or opponent_score >= 9:
@@ -130,4 +130,4 @@ if pairing == "false":
                 opponent_score -= 2
             
             print(f"{Player_A}'s score is {player_score}.")
-            print(f"{Player_B} and {Player_C}'s score is {opponent_score}.")
+            print(f"{Player_B} and {Player_C}'s score is {opponent_score}.\n")
