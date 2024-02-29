@@ -7,8 +7,8 @@ ambidex = ["ALLY", "BETRAY"]
 enemy_names = ["Zero", "Sigma", "Phi", "Alice", "Luna", "Dio", "Quark", "Tenmyouji", "Clover", "K"]
 true_false = ["true", "false"]
 
-print("The Ambidex Game will now begin.")
-print("Rules are as follows:\n1. If both you and your opponent choose ALLY, both of you will receive 2 points.\n2. If both of you will choose BETRAY, no points will be added.\n3. If you choose ALLY and your opponent chooses BETRAY, you lose 2 points while they gain 3 points. If you choose BETRAY while they choose ALLY, you will receive 3 points and they will lose 2.\n4. You need exactly 9 points to win the game.\n5. If your score will drop below 0, you will be punished.\nHave a nice tragedy!\n")
+print("The Ambidex Game will now begin.\n")
+print("Rules are as follows:\n1. If both you and your opponent choose ALLY, both of you will receive 2 points.\n2. If both of you will choose BETRAY, no points will be added.\n3. If you choose ALLY and your opponent chooses BETRAY, you lose 2 points while they gain 3 points. If you choose BETRAY while they choose ALLY, you will receive 3 points and they will lose 2.\n4. You need at least 9 points to win the game.\n5. If your score will drop below 0, you will be punished.\nHave a nice tragedy!\n")
 
 Player_A = str(input("Please provide your name: "))
 
@@ -31,14 +31,14 @@ if pairing == "true":
     print(f"Your opponent is {Player_C}.")
 
     for score in range(0, 100):
-        if player_score == 9 or opponent_score == 9:
+        if player_score >= 9 or opponent_score >= 9:
             print("The game has concluded.")
-            if player_score == 9:
+            if player_score >= 9:
                 print("You have won the Ambidex Game. Congratulations! Please go to Door 9.")
                 input("Press any key to quit.")
                 sys.exit()
                 
-            elif opponent_score == 9:
+            elif opponent_score >= 9:
                 print("You have lost the Ambidex Game. Please await your punishment.")
                 input("Press any key to quit.")
                 sys.exit()
@@ -84,14 +84,14 @@ if pairing == "false":
     print(f"Your opponents are {Player_B} and {Player_C}.")
 
     for score in range(0, 100):
-        if player_score == 9 or opponent_score == 9:
+        if player_score >= 9 or opponent_score >= 9:
             print("The game has concluded.")
-            if player_score == 9:
+            if player_score >= 9:
                 print("You have won the Ambidex Game. Congratulations! Please go to Door 9.")
                 input("Press any key to quit.")
                 sys.exit()
                 
-            elif opponent_score == 9:
+            elif opponent_score >= 9:
                 print("You have lost the Ambidex Game. Please await your punishment.")
                 input("Press any key to quit.")
                 sys.exit()
