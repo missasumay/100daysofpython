@@ -58,7 +58,7 @@ if pairing == "true":
                 
         else:
             print(f"It is your turn, {Player_A}. Do you wish to Ally or Betray {Player_C}?")
-            player_choice = input("Please provide your answer by typing either ALLY or BETRAY: " )
+            player_choice = input("Please provide your answer by typing either ALLY or BETRAY: ")
             opponent_choice = random.choice(ambidex)
             print(f"{Player_A} and {Player_B} have chosen {player_choice}.")
             print(f"{Player_C} has chosen {opponent_choice}.")
@@ -111,7 +111,7 @@ if pairing == "false":
                 
         else:
             print(f"It is your turn, {Player_A}. Do you wish to Ally or Betray {Player_B} and {Player_C}?")
-            player_choice = input("Please provide your answer by typing either ALLY or BETRAY: " )
+            player_choice = input("Please provide your answer by typing either ALLY or BETRAY: ")
             opponent_choice = random.choice(ambidex)
             print(f"{Player_A} has chosen {player_choice}.")
             print(f"{Player_B} and {Player_C} have chosen {opponent_choice}.")
