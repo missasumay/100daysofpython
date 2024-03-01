@@ -89,7 +89,7 @@ if pairing == "false":
     print(f"You are playing as a SOLO.")
     print(f"Your opponents are {Player_B} and {Player_C}.\n")
 
-    for score in range(0, 100):
+    while player_score >= 9 or opponent_score >= 9 or player_score < 0 or opponent_score < 0:
         if player_score >= 9 or opponent_score >= 9:
             print("The game has concluded.")
             if player_score >= 9:
