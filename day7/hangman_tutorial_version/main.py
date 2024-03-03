@@ -35,11 +35,11 @@ while not end_of_game:
         
         if lives == 0:
             end_of_game = True
-            print("you failed")
+            print(f"You have lost. The word was {chosen_word}.")
 
     print(f"{' '.join(display)}")
 
 
     if "_" not in display:
         end_of_game = True
-        print("you won")
+        print("Congrats, you have won!")
