@@ -4,9 +4,17 @@ data = read_csv("day26\\nato_alphabet\\nato_phonetic_alphabet.csv")
 
 nato_alphabet = {row.letter:row.code for (index, row) in data.iterrows()}
 
-name = input("Type a word: ").upper()
+def generate_phonetic():
+    name = input("Type a word: ").upper()
 
-name_coded = [nato_alphabet[letter] for letter in name]
+    try:
+        name_coded = [nato_alphabet[letter] for letter in name]
 
-print(name_coded)
+    except KeyError: 
+        print("Sorry, only letters in the alphabet please.")
+        generate_phonetic()
 
+    else:
+        print(name_coded)
+
+generate_phonetic()
