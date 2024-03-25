@@ -2,6 +2,7 @@ from tkinter import *
 from tkinter import messagebox
 import random
 import pyperclip
+import json
 
 LETTERS = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z', 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z']
 NUMBERS = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9']
@@ -50,6 +51,11 @@ def save_password():
     website = website_input.get()
     username =  username_input.get()
     password = password_input.get()
+    new_data = {
+        website: {
+            "username": username,
+            "password": password,
+    }}
 
     if len(website) == 0:
         messagebox.showerror(title="ERROR", message="Your website name/address is empty, data will not be saved to the file.")
@@ -61,12 +67,49 @@ def save_password():
         is_ok = messagebox.askokcancel(title=website, message=f"These are the details entered:\nUsername: {username}\nPassword: {password}\nIs this ok to save?")
 
         if is_ok:
-            data = open("day29\\password.txt", "a")
-            data.write(f"{website} || {username} || {password}\n")
-            data.close()
+            try:
+                with open("day29\\password.json", "r") as data_file:
+                    data = json.load(data_file)
+            except FileNotFoundError:
+                with open("day29\\password.json", "w") as data_file:
+                    json.dump(new_data, data_file, indent=4)
+            
+            else:
+                data.update(new_data)
+                with open("day29\\password.json", "w") as data_file:
+                    json.dump(data, data_file, indent=4)
+
 
             website_input.delete(0, END)
             password_input.delete(0, END)
+
+# ---------------------------- SEARCH ------------------------------- #
+            
+def search():
+    website = website_input.get()
+
+    if website == "":
+        messagebox.showerror(title="ERROR", message="Website field is empty. Please provide a name.")
+
+    else:
+        try:
+            with open("day29\\password.json", "r") as data_file:
+                        data = json.load(data_file)
+        except FileNotFoundError:
+            messagebox.showerror(title="ERROR", message="No passwords have been previously saved up. File cannot be found.")
+        
+        else:
+            try:
+                test = data[website]
+
+            except KeyError:
+                messagebox.showerror(title="ERROR", message="No entries with that site name. Please check spelling.")
+
+            else:
+                username = data[website]["username"]
+                password = data[website]["password"]
+
+            messagebox.showinfo(title=website, message=f"Username: {username}\nPassword: {password}")
 
 
 # ---------------------------- UI SETUP ------------------------------- #
@@ -93,8 +136,8 @@ password_label.grid(column=1, row=4)
 
 # Inputs
 
-website_input = Entry(width=35, highlightthickness=0)
-website_input.grid(column=2, row=2, columnspan=2, sticky=EW)
+website_input = Entry(width=21, highlightthickness=0)
+website_input.grid(column=2, row=2, sticky=EW)
 
 username_input = Entry(width=35, highlightthickness=0)
 username_input.grid(column=2, row=3, columnspan=2, sticky=EW)
@@ -104,6 +147,9 @@ password_input.grid(column=2, row=4, sticky=EW)
 
 
 # Buttons
+
+search_button = Button(text="Search", width=15, highlightthickness=0, command=search)
+search_button.grid(column=3, row=2, sticky=EW)
 
 generate_password_button = Button(text="Generate Password", width=15, highlightthickness=0, command=generate_password)
 generate_password_button.grid(column=3, row=4, sticky=EW)
